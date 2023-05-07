@@ -1,0 +1,98 @@
+//////////// EXERCISE 1 ////////////////
+
+create database medical;
+create table Doctor(
+doctor_id int primary key not null,
+doctor_name varchar(30) not null,
+specialization varchar(30) not null
+);
+
+crate table patient(
+patient_id int primary not null;
+patient_name varchar(30) not null,
+type_of_disease varchar(30) not null
+);
+
+create table appointment(
+pat_id int primary key not null,
+doc_id int not null,
+doc_name varhcar(30) not null,
+appointment_date date not null,
+appointment_time time not null);
+
+create table review(
+pat_id int primary key not null,
+doc_id int not null,
+review text not null,
+suggestions text not null);
+
+
+////////////// EXERCISE 2 ////////////
+
+create database contact;
+create table contact_table(
+id int primary key not null,
+email varchar(200) not null,
+fname varchar(30) not null,
+lname varchar(30) not null,
+company varchar(30) not null,
+Active_flag int not null,
+opt_out int not null);
+
+insert into contact_table values(123,"a@a.com","Kian","Seth","ABC",1,1),(133,"b@a.com","Neha","Seth","ABC",1,0),
+(234,"c@c.com","Puru","Malik","CDF",0,0),
+(342,"d@d.com","Sid","Maan","TEG",1,0);
+
+select * from contact_table where Active_flag=1;
+
+delete from contact_table where opt_out=1;
+
+select * from contact_table;
+
+delete from contact_table where company="ABC";
+
+select distinct(company) from contact_table;
+
+insert into contact_table values(658,"mili@gmail.com","mili","","DGH",1,1);
+
+update contact_table set fname="niti" where fname="mili";
+
+
+///////////// EXERCISE 3 /////////
+
+
+create databse customer1;
+create table customer(
+customer_id int primary key not null,
+cust_name varchar(30) not null,
+city varchar(30) not null,
+grade int,
+salesman_id int not null);
+
+insert into customer values(3002,"Nick Rimando","New York",100,5001),
+(3007,"Brad Davis","New York",200,5001),
+(3005,"Graham Zusi","California",200,5002),
+(3008,"Julian Green","London",300,5002),
+(3004,"Fabian Johnson","Paris",300,5006),
+(3009,"Geoff Cameron","Berlin",100,5003),
+(3003,"Jozy Altidor","Moscow",200,5007),
+(3001,"Brad Guzan","London",null,5005);
+
+create table salesman(
+salesman_id int primary key not null,
+salesman_name varchar(30) not null,
+salesman_city varchar(30) not null,
+commission float not null);
+
+insert into salesman values
+(5001,"James Hoog","New York",0.15),
+(5002,"Nail Knite","Paris",0.13),
+(5005,"Pit Alex","London",0.11),
+(5006,"Mc Lyon","Paris",0.14),
+(5007,"Paul Adam","Rome",0.13),
+(5003,"Lauson Hen","San Jose",0.12);
+
+select cust_name,city,grade,salesman_name,salesman_city from cuomer join salesman on customer.salesman_id=salesman.salesman_id where grade<100 order by customer_id asc;
+
+
+
